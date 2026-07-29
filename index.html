@@ -21,12 +21,11 @@
       --gray-500: #8a8a8a;
       --gray-300: #c9c9c9;
       --white: #ffffff;
-      --accent: #c8a06f;
-      --accent-light: #dcbd8f;
-      --accent-dark: #a8834f;
+      --gold: #c8a06f;
+      --gold-light: #dfc094;
+      --gold-dark: #a8834f;
       --text: #1c1c1c;
-      --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      --radius: 4px;
+      --ease: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
     html { scroll-behavior: smooth; }
     body {
@@ -35,204 +34,205 @@
       background: var(--black);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
-    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+    h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 400; letter-spacing: -0.015em; }
     .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-    img { max-width: 100%; height: auto; display: block; }
+    img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
-    button { font-family: inherit; }
+    button { font-family: inherit; cursor: pointer; }
     .section { padding: 120px 0; }
     .section-label {
       font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 18px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
       display: flex; align-items: center; gap: 12px;
     }
-    .section-label::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+    .section-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
     .section-title { font-size: clamp(2rem, 4.5vw, 3.25rem); line-height: 1.1; margin-bottom: 20px; }
-    .section-title em { font-style: italic; color: var(--accent); }
+    .section-title em { font-style: italic; color: var(--gold); }
     .section-sub { font-size: 1.05rem; color: var(--gray-500); max-width: 560px; line-height: 1.75; }
     @media (max-width: 768px) { .section { padding: 72px 0; } .container { padding: 0 20px; } }
 
-    /* Reveal animations */
     .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-d1 { transition-delay: 0.1s; } .reveal-d2 { transition-delay: 0.2s; } .reveal-d3 { transition-delay: 0.3s; }
 
-    .skip-link { position: absolute; top: -100px; left: 16px; background: var(--accent); color: var(--black); padding: 12px 20px; z-index: 2000; font-weight: 600; }
+    .skip-link { position: absolute; top: -100px; left: 16px; background: var(--gold); color: var(--black); padding: 12px 20px; z-index: 2000; font-weight: 600; }
     .skip-link:focus { top: 16px; }
 
-    /* Header */
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 22px 0; transition: var(--transition); }
-    header.scrolled { background: rgba(10,10,10,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    /* ─── HEADER ─── */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 22px 0; transition: var(--ease); }
+    header.scrolled { background: rgba(10,10,10,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
     header .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; letter-spacing: 0.06em; }
-    .logo span { color: var(--accent); }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 500; letter-spacing: 0.06em; }
+    .logo span { color: var(--gold); }
     .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.65); transition: var(--transition); letter-spacing: 0.12em; text-transform: uppercase; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 1px; background: var(--accent); transition: var(--transition); }
-    .nav-links a:hover { color: var(--white); } .nav-links a:hover::after { width: 100%; }
+    .nav-links a { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.65); transition: var(--ease); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--gold); }
     .nav-actions { display: flex; align-items: center; gap: 20px; }
-    .cart-btn { background: none; border: 1px solid var(--gray-700); color: var(--white); padding: 10px 18px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: var(--transition); }
-    .cart-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .cart-count { background: var(--accent); color: var(--black); width: 20px; height: 20px; border-radius: 50%; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; font-weight: 700; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 1002; }
-    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: var(--transition); }
+    .cart-btn { background: none; border: 1px solid var(--gray-700); color: var(--white); padding: 10px 18px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; transition: var(--ease); }
+    .cart-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .cart-count { background: var(--gold); color: var(--black); width: 20px; height: 20px; border-radius: 50%; font-size: 0.7rem; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; z-index: 1002; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: var(--ease); }
     .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
     @media (max-width: 900px) {
       .hamburger { display: flex; }
-      .nav-links { position: fixed; inset: 0; background: rgba(10,10,10,0.98); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: var(--transition); }
+      .nav-links { position: fixed; inset: 0; background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); flex-direction: column; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: var(--ease); }
       .nav-links.open { opacity: 1; pointer-events: all; }
       .nav-links a { font-size: 1.3rem; }
       .nav-actions .cart-btn { display: none; }
     }
 
-    /* Hero */
-    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.45; }
-    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.4) 100%); }
+    /* ─── HERO ─── */
+    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; background: var(--black); }
+    .hero-bg { position: absolute; inset: 0; overflow: hidden; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.8) 0%, rgba(10,10,10,0.4) 40%, rgba(10,10,10,0.2) 70%); }
     .hero .container { position: relative; z-index: 1; padding-top: 120px; padding-bottom: 80px; }
-    .hero-content { max-width: 640px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(200,160,111,0.4); color: var(--accent); padding: 10px 22px; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 32px; }
-    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
-    .hero h1 { font-size: clamp(2.8rem, 6.5vw, 5rem); line-height: 1.05; margin-bottom: 28px; font-weight: 300; }
-    .hero h1 em { font-style: italic; color: var(--accent); }
-    .hero p { font-size: 1.1rem; color: var(--gray-300); margin-bottom: 44px; max-width: 500px; line-height: 1.8; font-weight: 300; }
+    .hero-content { max-width: 680px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--gold); color: var(--gold); padding: 10px 24px; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 36px; background: rgba(200,160,111,0.08); }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); line-height: 1; margin-bottom: 28px; font-weight: 300; }
+    .hero h1 em { font-style: italic; color: var(--gold); display: block; }
+    .hero p { font-size: 1.15rem; color: rgba(255,255,255,0.7); margin-bottom: 44px; max-width: 540px; line-height: 1.8; font-weight: 300; }
     .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
-    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 17px 36px; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; transition: var(--transition); }
-    .btn-primary { background: var(--accent); color: var(--black); }
-    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(200,160,111,0.25); }
-    .btn-ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-    .hero-stats { display: flex; gap: 48px; margin-top: 64px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); }
-    .hero-stat span { font-family: 'Fraunces', serif; font-size: 2rem; display: block; color: var(--accent); }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 17px 36px; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; border: none; cursor: pointer; transition: var(--ease); }
+    .btn-gold { background: var(--gold); color: var(--black); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(200,160,111,0.3); }
+    .btn-ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-stats { display: flex; gap: 56px; margin-top: 64px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .hero-stat span { font-family: 'Fraunces', serif; font-size: 2rem; display: block; color: var(--gold); }
     .hero-stat small { font-size: 0.75rem; color: var(--gray-500); letter-spacing: 0.1em; text-transform: uppercase; }
-    @media (max-width: 768px) { .hero-stats { gap: 28px; } }
+    @media (max-width: 768px) {
+      .hero-stats { gap: 28px; flex-wrap: wrap; }
+      .hero h1 em { display: inline; }
+    }
 
-    /* Marquee */
-    .marquee { background: var(--dark); border-block: 1px solid rgba(255,255,255,0.06); padding: 20px 0; overflow: hidden; }
-    .marquee-track { display: flex; gap: 64px; white-space: nowrap; animation: marquee 30s linear infinite; }
-    .marquee span { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray-500); display: flex; align-items: center; gap: 64px; }
-    .marquee span::after { content: '◆'; color: var(--accent); font-size: 0.5rem; margin-left: 64px; }
+    /* ─── MARQUEE ─── */
+    .marquee { background: var(--dark); border-block: 1px solid rgba(255,255,255,0.04); padding: 18px 0; overflow: hidden; }
+    .marquee-track { display: flex; gap: 64px; white-space: nowrap; animation: marquee 28s linear infinite; width: max-content; }
+    .marquee span { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray-500); display: flex; align-items: center; gap: 64px; flex-shrink: 0; }
+    .marquee span::after { content: '◆'; color: var(--gold); font-size: 0.45rem; }
     @keyframes marquee { to { transform: translateX(-50%); } }
 
-    /* Features */
-    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 64px; border: 1px solid var(--gray-800); }
-    .feature-card { background: var(--black); padding: 48px 32px; border-right: 1px solid var(--gray-800); transition: var(--transition); position: relative; overflow: hidden; }
+    /* ─── FEATURES ─── */
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 64px; }
+    .feature-card { background: linear-gradient(180deg, var(--gray-900) 0%, var(--black) 100%); padding: 56px 36px; border-right: 1px solid var(--gray-800); border-bottom: 1px solid var(--gray-800); transition: var(--ease); position: relative; }
     .feature-card:last-child { border-right: none; }
-    .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: var(--transition); }
+    .feature-card::before { content: ''; position: absolute; top: 0; left: 40px; right: 40px; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
     .feature-card:hover { background: var(--gray-900); }
     .feature-card:hover::before { transform: scaleX(1); }
-    .feature-num { font-family: 'Fraunces', serif; font-size: 0.85rem; color: var(--accent); margin-bottom: 20px; display: block; }
+    .feature-num { font-family: 'Fraunces', serif; font-size: 0.8rem; color: var(--gold); margin-bottom: 24px; display: block; opacity: 0.6; }
     .feature-card h3 { font-size: 1.15rem; margin-bottom: 12px; font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0; }
     .feature-card p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.7; }
-    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } .feature-card { border-bottom: 1px solid var(--gray-800); } }
+    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } .feature-card { border-right: none; border-bottom: 1px solid var(--gray-800); } }
     @media (max-width: 540px) { .features-grid { grid-template-columns: 1fr; } }
 
-    /* Benefits — image split */
-    .split-section { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
-    .split-image { position: relative; min-height: 560px; overflow: hidden; }
-    .split-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.22,1,0.36,1); }
-    .split-image:hover img { transform: scale(1.05); }
-    .split-content { display: flex; flex-direction: column; justify-content: center; padding: 80px; background: var(--dark); }
-    .benefit-list { margin-top: 40px; display: flex; flex-direction: column; }
-    .benefit-item { display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--gray-800); }
+    /* ─── BENEFITS SPLIT ─── */
+    .split { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .split-img { position: relative; min-height: 520px; overflow: hidden; }
+    .split-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.22,1,0.36,1); }
+    .split-img:hover img { transform: scale(1.04); }
+    .split-text { display: flex; flex-direction: column; justify-content: center; padding: 80px 72px; background: var(--dark); }
+    .benefit-list { margin-top: 40px; }
+    .benefit-item { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--gray-800); }
     .benefit-item:last-child { border-bottom: none; }
-    .benefit-num { font-family: 'Fraunces', serif; color: var(--accent); font-size: 1rem; padding-top: 4px; }
-    .benefit-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+    .benefit-num { font-family: 'Fraunces', serif; color: var(--gold); font-size: 0.95rem; padding-top: 3px; opacity: 0.7; }
+    .benefit-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
     .benefit-item p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.65; }
-    @media (max-width: 900px) { .split-section { grid-template-columns: 1fr; } .split-content { padding: 60px 32px; } .split-image { min-height: 320px; } }
+    @media (max-width: 900px) { .split { grid-template-columns: 1fr; } .split-text { padding: 60px 32px; } .split-img { min-height: 300px; } }
 
-    /* Products */
-    .products { background: var(--black); }
+    /* ─── PRODUCTS ─── */
     .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
-    .product-card { background: var(--dark); border: 1px solid var(--gray-800); transition: var(--transition); overflow: hidden; position: relative; }
+    .product-card { background: var(--gray-900); border: 1px solid var(--gray-800); transition: var(--ease); overflow: hidden; }
     .product-card:hover { transform: translateY(-8px); border-color: var(--gray-700); box-shadow: 0 24px 48px rgba(0,0,0,0.5); }
     .product-img { height: 340px; overflow: hidden; position: relative; }
-    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(0.22,1,0.36,1); }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.22,1,0.36,1); }
     .product-card:hover .product-img img { transform: scale(1.08); }
-    .product-badge { position: absolute; top: 16px; left: 16px; background: rgba(10,10,10,0.85); backdrop-filter: blur(8px); color: var(--accent); padding: 7px 16px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid rgba(200,160,111,0.4); }
+    .product-badge { position: absolute; top: 16px; left: 16px; background: rgba(10,10,10,0.8); color: var(--gold); padding: 7px 16px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid rgba(200,160,111,0.3); }
     .product-body { padding: 28px; }
     .product-body h3 { font-size: 1.3rem; margin-bottom: 8px; }
     .product-body p { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 24px; line-height: 1.7; }
     .product-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid var(--gray-800); }
-    .product-price { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--accent); }
-    .product-btn { background: transparent; color: var(--white); border: 1px solid var(--gray-700); padding: 12px 24px; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: var(--transition); }
-    .product-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--black); }
+    .product-price { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--gold); }
+    .product-btn { background: transparent; color: var(--white); border: 1px solid var(--gray-700); padding: 12px 24px; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: var(--ease); }
+    .product-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
     @media (max-width: 900px) { .products-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
 
-    /* Guarantee banner */
+    /* ─── GUARANTEE ─── */
     .guarantee { background: var(--dark); border-block: 1px solid var(--gray-800); padding: 80px 0; }
     .guarantee .container { display: flex; align-items: center; gap: 48px; }
-    .guarantee-icon { flex-shrink: 0; width: 110px; height: 110px; border: 1px solid rgba(200,160,111,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 2rem; color: var(--accent); }
+    .guarantee-icon { flex-shrink: 0; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 1.8rem; color: var(--gold); background: rgba(200,160,111,0.08); border: 1px solid rgba(200,160,111,0.25); }
     .guarantee h3 { font-size: 1.6rem; margin-bottom: 10px; }
     .guarantee p { color: var(--gray-500); font-size: 0.95rem; max-width: 640px; line-height: 1.7; }
     .guarantee .btn { margin-left: auto; flex-shrink: 0; }
     @media (max-width: 900px) { .guarantee .container { flex-direction: column; text-align: center; gap: 28px; } .guarantee .btn { margin-left: 0; } }
 
-    /* Testimonials */
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { border-top: 1px solid var(--gray-800); }
     .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
-    .testimonial-card { background: var(--dark); border: 1px solid var(--gray-800); padding: 40px 32px; position: relative; transition: var(--transition); }
+    .testimonial-card { background: var(--gray-900); border: 1px solid var(--gray-800); padding: 44px 36px; transition: var(--ease); position: relative; }
     .testimonial-card:hover { border-color: var(--gray-700); transform: translateY(-4px); }
-    .testimonial-card::before { content: '"'; font-family: 'Fraunces', serif; font-size: 4rem; color: var(--accent); opacity: 0.25; position: absolute; top: 12px; left: 24px; line-height: 1; }
-    .testimonial-stars { color: var(--accent); font-size: 0.85rem; margin: 24px 0 16px; letter-spacing: 3px; }
+    .testimonial-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 20px; letter-spacing: 3px; }
     .testimonial-card blockquote { font-size: 0.92rem; color: var(--gray-300); line-height: 1.75; margin-bottom: 28px; font-weight: 300; }
     .testimonial-author { display: flex; align-items: center; gap: 14px; }
-    .testimonial-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--gray-800); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; color: var(--accent); font-size: 1rem; border: 1px solid rgba(200,160,111,0.3); }
+    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: rgba(200,160,111,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 0.9rem; font-weight: 600; border: 1px solid rgba(200,160,111,0.2); }
     .testimonial-name { font-weight: 600; font-size: 0.9rem; }
     .testimonial-location { font-size: 0.78rem; color: var(--gray-500); }
     @media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; } }
 
-    /* Newsletter */
-    .newsletter { background: var(--dark); border-block: 1px solid var(--gray-800); text-align: center; }
+    /* ─── NEWSLETTER ─── */
+    .newsletter { border-top: 1px solid var(--gray-800); text-align: center; }
+    .newsletter .section-label { justify-content: center; }
     .newsletter h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 16px; }
-    .newsletter p { color: var(--gray-500); margin-bottom: 40px; }
+    .newsletter p { color: var(--gray-500); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
     .newsletter-form { display: flex; max-width: 480px; margin: 0 auto; border: 1px solid var(--gray-700); }
     .newsletter-form input { flex: 1; background: transparent; border: none; outline: none; padding: 18px 24px; color: var(--white); font-size: 0.9rem; font-family: inherit; }
     .newsletter-form input::placeholder { color: var(--gray-500); }
-    .newsletter-form button { background: var(--accent); color: var(--black); border: none; padding: 0 32px; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: var(--transition); }
-    .newsletter-form button:hover { background: var(--accent-light); }
-    .newsletter-msg { margin-top: 16px; font-size: 0.85rem; color: var(--accent); min-height: 20px; }
+    .newsletter-form button { background: var(--gold); color: var(--black); border: none; padding: 0 36px; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: var(--ease); }
+    .newsletter-form button:hover { background: var(--gold-light); }
+    .newsletter-msg { margin-top: 16px; font-size: 0.85rem; color: var(--gold); min-height: 20px; }
 
-    /* Footer */
-    footer { padding: 80px 0 32px; }
+    /* ─── FOOTER ─── */
+    footer { padding: 80px 0 32px; border-top: 1px solid var(--gray-800); }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 64px; }
     .footer-brand p { font-size: 0.85rem; color: var(--gray-500); max-width: 300px; line-height: 1.75; margin-top: 20px; }
     .footer-col h4 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gray-500); margin-bottom: 24px; font-family: 'Inter', sans-serif; }
-    .footer-col a { display: block; font-size: 0.88rem; margin-bottom: 14px; color: var(--gray-300); transition: var(--transition); }
-    .footer-col a:hover { color: var(--accent); padding-left: 4px; }
+    .footer-col a { display: block; font-size: 0.88rem; margin-bottom: 14px; color: var(--gray-300); transition: var(--ease); }
+    .footer-col a:hover { color: var(--gold); padding-left: 4px; }
     .footer-bottom { border-top: 1px solid var(--gray-800); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--gray-500); flex-wrap: wrap; gap: 12px; }
     @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 540px) { .footer-grid { grid-template-columns: 1fr; } }
 
-    /* Cart drawer */
-    .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 1500; opacity: 0; pointer-events: none; transition: var(--transition); }
+    /* ─── CART DRAWER ─── */
+    .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 1500; opacity: 0; pointer-events: none; transition: var(--ease); }
     .cart-overlay.open { opacity: 1; pointer-events: all; }
     .cart-drawer { position: fixed; top: 0; right: -420px; width: 420px; max-width: 90vw; height: 100vh; background: var(--dark); z-index: 1501; transition: right 0.45s cubic-bezier(0.22,1,0.36,1); display: flex; flex-direction: column; border-left: 1px solid var(--gray-800); }
     .cart-drawer.open { right: 0; }
-    .cart-head { display: flex; justify-content: space-between; align-items: center; padding: 24px 28px; border-bottom: 1px solid var(--gray-800); }
+    .cart-head { display: flex; justify-content: space-between; align-items: center; padding: 28px 32px; border-bottom: 1px solid var(--gray-800); }
     .cart-head h3 { font-size: 1.2rem; }
-    .cart-close { background: none; border: none; color: var(--gray-500); font-size: 1.6rem; cursor: pointer; transition: var(--transition); line-height: 1; }
-    .cart-close:hover { color: var(--accent); }
-    .cart-items { flex: 1; overflow-y: auto; padding: 24px 28px; }
+    .cart-close { background: none; border: none; color: var(--gray-500); font-size: 1.8rem; cursor: pointer; transition: var(--ease); line-height: 1; }
+    .cart-close:hover { color: var(--gold); }
+    .cart-items { flex: 1; overflow-y: auto; padding: 24px 32px; }
     .cart-empty { color: var(--gray-500); text-align: center; padding: 60px 0; font-size: 0.9rem; }
     .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--gray-800); }
     .cart-item-name { font-weight: 600; font-size: 0.9rem; }
-    .cart-item-price { color: var(--accent); font-family: 'Fraunces', serif; }
-    .cart-item-remove { background: none; border: none; color: var(--gray-500); cursor: pointer; font-size: 1.1rem; margin-left: 16px; transition: var(--transition); }
+    .cart-item-price { color: var(--gold); font-family: 'Fraunces', serif; }
+    .cart-item-remove { background: none; border: none; color: var(--gray-500); cursor: pointer; font-size: 1.2rem; transition: var(--ease); padding: 4px; }
     .cart-item-remove:hover { color: #e06060; }
-    .cart-foot { padding: 24px 28px; border-top: 1px solid var(--gray-800); }
+    .cart-foot { padding: 24px 32px; border-top: 1px solid var(--gray-800); }
     .cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; margin-bottom: 20px; }
-    .cart-total strong { font-family: 'Fraunces', serif; color: var(--accent); }
-    .cart-checkout { width: 100%; background: var(--accent); color: var(--black); border: none; padding: 18px; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: var(--transition); }
-    .cart-checkout:hover { background: var(--accent-light); }
-    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(120px); background: var(--dark); border: 1px solid var(--accent); color: var(--white); padding: 16px 32px; z-index: 2000; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1); font-size: 0.9rem; }
-    .toast.show { transform: translateX(-50%) translateY(0); }
+    .cart-total strong { font-family: 'Fraunces', serif; color: var(--gold); }
+    .cart-checkout { width: 100%; background: var(--gold); color: var(--black); border: none; padding: 18px; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: var(--ease); }
+    .cart-checkout:hover { background: var(--gold-light); }
 
+    .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(120px); background: var(--gray-900); border: 1px solid var(--gold); color: var(--white); padding: 16px 32px; z-index: 2000; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1); font-size: 0.9rem; backdrop-filter: blur(12px); }
+    .toast.show { transform: translateX(-50%) translateY(0); }
     .no-scroll { overflow: hidden; }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
       .reveal { opacity: 1; transform: none; }
@@ -242,31 +242,29 @@
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
 
-  <header id="header" role="banner">
+  <!-- ═══ HEADER ═══ -->
+  <header id="header">
     <div class="container">
       <a href="#" class="logo">ZAKISTAR<span>.</span></a>
       <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
-          <li><a href="#why">Why Zakistar</a></li>
+          <li><a href="#features">Why Zakistar</a></li>
+          <li><a href="#benefits">Benefits</a></li>
           <li><a href="#products">Shop</a></li>
           <li><a href="#story">Story</a></li>
           <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
       <div class="nav-actions">
-        <button class="cart-btn" onclick="toggleCart(true)" aria-label="Open cart">
-          Cart <span class="cart-count" id="cartCount">0</span>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
+        <button class="cart-btn" onclick="toggleCart(true)" aria-label="Open cart">Cart <span class="cart-count" id="cartCount">0</span></button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <!-- Hero -->
+
+    <!-- ═══ HERO ═══ -->
     <section class="hero">
       <div class="hero-bg">
         <img src="https://zakistar.com/wp-content/uploads/2018/10/Flip-flops-welcome-zakistar-shine.jpg" alt="" aria-hidden="true">
@@ -274,118 +272,93 @@
       <div class="container">
         <div class="hero-content">
           <div class="hero-badge">Handcrafted in Slovenia</div>
-          <h1>Feel the beach<br>under your feet,<br><em>everywhere.</em></h1>
+          <h1>Feel the beach<br>under your feet,<br><em>everywhere you go</em></h1>
           <p>Zakistar flip flops carry natural pebbles that massage your feet with every step — handcrafted from natural materials into a beautiful piece of wearable art.</p>
           <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary">Shop the Collection</a>
+            <a href="#products" class="btn btn-gold">Shop the Collection</a>
             <a href="#story" class="btn btn-ghost">Our Story</a>
           </div>
           <div class="hero-stats">
             <div class="hero-stat"><span>100%</span><small>Natural Materials</small></div>
-            <div class="hero-stat"><span>30</span><small>Day Guarantee</small></div>
-            <div class="hero-stat"><span>2017</span><small>Handcrafting Since</small></div>
+            <div class="hero-stat"><span>30-Day</span><small>Money-Back Guarantee</small></div>
+            <div class="hero-stat"><span>Since</span><small>2017</small></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Marquee -->
+    <!-- ═══ MARQUEE ═══ -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Natural Reflexology</span><span>Handmade</span><span>Custom Designs</span><span>Recommended by Physiotherapists</span><span>Natural Materials</span>
-        <span>Natural Reflexology</span><span>Handmade</span><span>Custom Designs</span><span>Recommended by Physiotherapists</span><span>Natural Materials</span>
+        <span>Natural Reflexology</span><span>Handcrafted in Slovenia</span><span>Custom Designs</span><span>Recommended by Physiotherapists</span><span>100% Natural Materials</span>
+        <span>Natural Reflexology</span><span>Handcrafted in Slovenia</span><span>Custom Designs</span><span>Recommended by Physiotherapists</span><span>100% Natural Materials</span>
       </div>
     </div>
 
-    <!-- Features -->
-    <section id="why" class="section" aria-labelledby="features-title">
+    <!-- ═══ FEATURES ═══ -->
+    <section id="features" class="section" aria-labelledby="features-title">
       <div class="container">
         <p class="section-label reveal">Why Zakistar</p>
         <h2 class="section-title reveal">Massage for your feet,<br><em>crafted by hand</em></h2>
         <p class="section-sub reveal">Every pair is a piece of wearable wellness — designed to reconnect you with the earth beneath your feet.</p>
         <div class="features-grid reveal">
-          <article class="feature-card">
-            <span class="feature-num">01</span>
-            <h3>Natural Pebble Sole</h3>
-            <p>Smooth river stones carefully selected and arranged to stimulate pressure points across your feet.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-num">02</span>
-            <h3>Handcrafted Quality</h3>
-            <p>Made by hand in Slovenia using traditional techniques — no two pairs are exactly alike.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-num">03</span>
-            <h3>Natural Materials</h3>
-            <p>Untreated leather, natural rubber, and locally sourced pebbles. Nothing synthetic against your skin.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-num">04</span>
-            <h3>Physio Recommended</h3>
-            <p>Trusted by physiotherapists to stimulate reflex points, circulation, and muscle activation.</p>
-          </article>
+          <article class="feature-card"><span class="feature-num">01</span><h3>Natural Pebble Sole</h3><p>Smooth river stones carefully selected and arranged to stimulate pressure points across your feet.</p></article>
+          <article class="feature-card"><span class="feature-num">02</span><h3>Handcrafted in Slovenia</h3><p>Made by hand using traditional techniques — no two pairs are exactly alike.</p></article>
+          <article class="feature-card"><span class="feature-num">03</span><h3>Natural Materials</h3><p>Untreated leather, natural rubber, and locally sourced pebbles. Nothing synthetic.</p></article>
+          <article class="feature-card"><span class="feature-num">04</span><h3>Physio Recommended</h3><p>Trusted by physiotherapists to stimulate reflex points and improve circulation.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- Benefits split -->
+    <!-- ═══ BENEFITS SPLIT ═══ -->
     <section id="benefits" aria-labelledby="benefits-title">
-      <div class="split-section">
-        <div class="split-image reveal">
+      <div class="split">
+        <div class="split-img reveal">
           <img src="https://zakistar.com/wp-content/uploads/2018/10/Best-cute-flip-flops-zakistar.jpg" alt="Collection of handcrafted Zakistar flip flops" loading="lazy">
         </div>
-        <div class="split-content">
+        <div class="split-text">
           <p class="section-label reveal">Health &amp; Wellness</p>
-          <h2 class="section-title reveal" id="benefits-title">More than<br><em>footwear</em></h2>
+          <h2 class="section-title reveal" id="benefits-title">More than<br><em>just footwear</em></h2>
           <div class="benefit-list">
             <div class="benefit-item reveal">
               <span class="benefit-num">01</span>
-              <div>
-                <h4>Natural Reflexology</h4>
-                <p>Pebbles positioned to stimulate key reflexology zones on your soles, promoting whole-body wellness.</p>
-              </div>
+              <div><h4>Natural Reflexology</h4><p>Pebbles positioned to stimulate key reflexology zones on your soles, promoting whole-body wellness.</p></div>
             </div>
             <div class="benefit-item reveal">
               <span class="benefit-num">02</span>
-              <div>
-                <h4>Improved Circulation</h4>
-                <p>The uneven surface encourages micro-movements that boost blood flow and reduce leg fatigue.</p>
-              </div>
+              <div><h4>Improved Circulation</h4><p>The uneven surface encourages micro-movements that boost blood flow and reduce leg fatigue.</p></div>
             </div>
             <div class="benefit-item reveal">
               <span class="benefit-num">03</span>
-              <div>
-                <h4>Activates Muscles</h4>
-                <p>Walking on pebbles engages stabilizing muscles, improving your natural gait and posture over time.</p>
-              </div>
+              <div><h4>Activates Muscles</h4><p>Walking on pebbles engages stabilizing muscles, improving your natural gait and posture over time.</p></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Products -->
-    <section id="products" class="section products" aria-labelledby="products-title">
+    <!-- ═══ PRODUCTS ═══ -->
+    <section id="products" class="section" aria-labelledby="products-title">
       <div class="container">
         <p class="section-label reveal">The Collection</p>
         <h2 class="section-title reveal" id="products-title">Popular <em>models</em></h2>
-        <p class="section-sub reveal">Each design has its own personality — find the pair that speaks to you. Every model can also be made to order with your choice of pebbles and straps.</p>
+        <p class="section-sub reveal">Each design has its own personality — find the pair that speaks to you. Every model can also be made to order.</p>
         <div class="products-grid">
           <article class="product-card reveal">
             <div class="product-img">
-              <img src="https://zakistar.com/wp-content/uploads/2021/02/zlate.jpg" alt="Zakistar Gold Rush flip flops with natural pebbles" loading="lazy">
+              <img src="https://zakistar.com/wp-content/uploads/2021/02/zlate.jpg" alt="Zakistar Gold Rush flip flops" loading="lazy">
               <span class="product-badge">Bestseller</span>
             </div>
             <div class="product-body">
               <h3>Gold Rush</h3>
-              <p>Our signature design — warm golden leather straps with carefully arranged river pebbles for a balanced, all-day massage.</p>
+              <p>Warm golden leather straps with carefully arranged river pebbles for a balanced, all-day massage.</p>
               <div class="product-foot">
                 <span class="product-price">€89</span>
                 <button class="product-btn" onclick="addToCart('Gold Rush', 89)">Add to Cart</button>
               </div>
             </div>
           </article>
-          <article class="product-card reveal reveal-delay-1">
+          <article class="product-card reveal reveal-d1">
             <div class="product-img">
               <img src="https://zakistar.com/wp-content/uploads/2021/02/crne.jpg" alt="Zakistar Black Mamba flip flops" loading="lazy">
               <span class="product-badge">Classic</span>
@@ -399,7 +372,7 @@
               </div>
             </div>
           </article>
-          <article class="product-card reveal reveal-delay-2">
+          <article class="product-card reveal reveal-d2">
             <div class="product-img">
               <img src="https://zakistar.com/wp-content/uploads/2021/02/SaraWS.jpg" alt="Custom made Zakistar flip flops" loading="lazy">
               <span class="product-badge">Made to Order</span>
@@ -417,36 +390,36 @@
       </div>
     </section>
 
-    <!-- Guarantee -->
+    <!-- ═══ GUARANTEE ═══ -->
     <section class="guarantee" aria-labelledby="guarantee-title">
       <div class="container">
         <div class="guarantee-icon reveal">30</div>
-        <div class="reveal reveal-delay-1">
-          <h3 id="guarantee-title">Try them risk free — 30-day money-back guarantee</h3>
-          <p>We understand you need to try them to feel the benefits. Wear your pair for up to 30 days. If you don't love them, send them back and we'll return your money — no questions asked.</p>
+        <div class="reveal reveal-d1">
+          <h3 id="guarantee-title">Try them risk free</h3>
+          <p>Wear your pair for up to 30 days. If you don't love them, send them back and we'll return your money — no questions asked. We're that confident you'll feel the difference.</p>
         </div>
-        <a href="#products" class="btn btn-primary reveal reveal-delay-2">Shop Now</a>
+        <a href="#products" class="btn btn-gold reveal reveal-d2">Shop Now</a>
       </div>
     </section>
 
-    <!-- Story -->
+    <!-- ═══ STORY ═══ -->
     <section id="story" aria-labelledby="story-title">
-      <div class="split-section">
-        <div class="split-content">
+      <div class="split">
+        <div class="split-text">
           <p class="section-label reveal">Our Story</p>
           <h2 class="section-title reveal" id="story-title">Born in Slovenia,<br><em>crafted for the world</em></h2>
           <p class="section-sub reveal" style="margin-bottom: 24px;">Zakistar began with a simple insight: walking barefoot on pebbles feels incredible. Strolling the shores of Slovenian lakes, our founder wondered why this natural therapy couldn't be part of everyday life.</p>
-          <p class="section-sub reveal" style="margin-bottom: 24px;">Working with local artisans, we developed a method to set natural river stones into comfortable footwear. Each pair is a collaboration between nature and human hands — pebbles from Slovenian rivers, leather from local tanners, straps woven with care.</p>
+          <p class="section-sub reveal" style="margin-bottom: 24px;">Working with local artisans, we developed a method to set natural river stones into comfortable footwear. Each pair is a collaboration between nature and human hands.</p>
           <p class="section-sub reveal">True wellness lives in the simple things. A walk. A connection to nature. The feeling of earth beneath your feet.</p>
         </div>
-        <div class="split-image reveal">
-          <img src="https://zakistar.com/wp-content/uploads/2021/02/vijolcne.jpg" alt="Zakistar Purple Haze handcrafted flip flops" loading="lazy">
+        <div class="split-img reveal">
+          <img src="https://zakistar.com/wp-content/uploads/2021/02/vijolcne.jpg" alt="Zakistar Purple Haze flip flops" loading="lazy">
         </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section id="reviews" class="section" aria-labelledby="reviews-title">
+    <!-- ═══ TESTIMONIALS ═══ -->
+    <section id="reviews" class="section testimonials" aria-labelledby="reviews-title">
       <div class="container">
         <p class="section-label reveal">Testimonials</p>
         <h2 class="section-title reveal" id="reviews-title">Join happy <em>Zakistar owners</em></h2>
@@ -454,35 +427,26 @@
           <article class="testimonial-card reveal">
             <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
             <blockquote>I've never felt anything like these flip flops. After a week my foot pain was noticeably reduced. The quality is outstanding.</blockquote>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" aria-hidden="true">A</div>
-              <div><div class="testimonial-name">Ana K.</div><div class="testimonial-location">Ljubljana, Slovenia</div></div>
-            </div>
+            <div class="testimonial-author"><div class="testimonial-avatar" aria-hidden="true">A</div><div><div class="testimonial-name">Ana K.</div><div class="testimonial-location">Ljubljana, Slovenia</div></div></div>
           </article>
-          <article class="testimonial-card reveal reveal-delay-1">
+          <article class="testimonial-card reveal reveal-d1">
             <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
             <blockquote>Bought a pair for my wife. She says it's like having a beach walk at home. Beautiful craftsmanship in every detail.</blockquote>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" aria-hidden="true">M</div>
-              <div><div class="testimonial-name">Marko R.</div><div class="testimonial-location">Maribor, Slovenia</div></div>
-            </div>
+            <div class="testimonial-author"><div class="testimonial-avatar" aria-hidden="true">M</div><div><div class="testimonial-name">Marko R.</div><div class="testimonial-location">Maribor, Slovenia</div></div></div>
           </article>
-          <article class="testimonial-card reveal reveal-delay-2">
+          <article class="testimonial-card reveal reveal-d2">
             <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
             <blockquote>Three months of daily wear and they're still like new. The pebbles stay perfectly in place. Worth every cent.</blockquote>
-            <div class="testimonial-author">
-              <div class="testimonial-avatar" aria-hidden="true">E</div>
-              <div><div class="testimonial-name">Eva M.</div><div class="testimonial-location">Munich, Germany</div></div>
-            </div>
+            <div class="testimonial-author"><div class="testimonial-avatar" aria-hidden="true">E</div><div><div class="testimonial-name">Eva M.</div><div class="testimonial-location">Munich, Germany</div></div></div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Newsletter -->
-    <section id="contact" class="section newsletter" aria-labelledby="newsletter-title">
+    <!-- ═══ NEWSLETTER ═══ -->
+    <section class="section newsletter" aria-labelledby="newsletter-title">
       <div class="container">
-        <p class="section-label reveal" style="justify-content: center;">Try Them</p>
+        <p class="section-label reveal">Try Them</p>
         <h2 class="reveal" id="newsletter-title">Leave your email and we'll<br>contact you to <em>discuss details</em></h2>
         <p class="reveal">Custom orders, sizing questions, or wholesale inquiries — we'd love to hear from you.</p>
         <form class="newsletter-form reveal" id="newsletterForm" aria-label="Contact form">
@@ -494,166 +458,70 @@
     </section>
   </main>
 
+  <!-- ═══ FOOTER ═══ -->
   <footer role="contentinfo">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="logo">ZAKISTAR<span>.</span></a>
-          <p>Handcrafted flip flops with natural pebbles. Healthy, unique &amp; comfortable — made with love in Slovenia.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Shop</h4>
-          <a href="#products">Gold Rush</a>
-          <a href="#products">Black Mamba</a>
-          <a href="#products">Custom Design</a>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <a href="#story">Our Story</a>
-          <a href="#why">Why Zakistar</a>
-          <a href="#reviews">Reviews</a>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <a href="https://zakistar.com" target="_blank" rel="noopener">zakistar.com</a>
-          <a href="https://www.facebook.com/Zakistar/" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://www.instagram.com/zakistar.flipflops/" target="_blank" rel="noopener">Instagram</a>
-        </div>
+        <div class="footer-brand"><a href="#" class="logo">ZAKISTAR<span>.</span></a><p>Handcrafted flip flops with natural pebbles. Healthy, unique &amp; comfortable — made with love in Slovenia.</p></div>
+        <div class="footer-col"><h4>Shop</h4><a href="#products">Gold Rush</a><a href="#products">Black Mamba</a><a href="#products">Custom Design</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="#story">Our Story</a><a href="#features">Why Zakistar</a><a href="#reviews">Reviews</a></div>
+        <div class="footer-col"><h4>Connect</h4><a href="https://www.facebook.com/Zakistar/" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/zakistar.flipflops/" target="_blank" rel="noopener">Instagram</a><a href="https://zakistar.com" target="_blank" rel="noopener" style="color: var(--gold);">Original Site →</a></div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Zakistar — Metka Pazlar s.p. All rights reserved.</p>
-        <p>Stay Healthy, Stay Natural.</p>
-      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Zakistar — Metka Pazlar s.p.</p><p>Stay Healthy, Stay Natural.</p></div>
     </div>
   </footer>
 
-  <!-- Cart drawer -->
+  <!-- ═══ CART ═══ -->
   <div class="cart-overlay" id="cartOverlay" onclick="toggleCart(false)"></div>
   <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
-    <div class="cart-head">
-      <h3>Your Cart</h3>
-      <button class="cart-close" onclick="toggleCart(false)" aria-label="Close cart">&times;</button>
-    </div>
-    <div class="cart-items" id="cartItems">
-      <div class="cart-empty">Your cart is empty.<br>Beautiful feet await.</div>
-    </div>
+    <div class="cart-head"><h3>Your Cart</h3><button class="cart-close" onclick="toggleCart(false)" aria-label="Close cart">&times;</button></div>
+    <div class="cart-items" id="cartItems"><div class="cart-empty">Your cart is empty.</div></div>
     <div class="cart-foot">
       <div class="cart-total"><span>Total</span><strong id="cartTotal">€0</strong></div>
-      <button class="cart-checkout" onclick="checkout()">Checkout</button>
+      <button class="cart-checkout" onclick="checkout()">Checkout →</button>
     </div>
   </aside>
 
   <div class="toast" id="toast" role="status"></div>
 
   <script>
-    // Cart
     let cart = [];
     const cartDrawer = document.getElementById('cartDrawer');
     const cartOverlay = document.getElementById('cartOverlay');
     const cartItemsEl = document.getElementById('cartItems');
     const toast = document.getElementById('toast');
 
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      renderCart();
-      showToast(`${name} added to cart`);
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      renderCart();
-    }
-
+    function addToCart(name, price) { cart.push({ name, price }); renderCart(); showToast(name + ' added to cart'); }
+    function removeFromCart(i) { cart.splice(i, 1); renderCart(); }
     function renderCart() {
       document.getElementById('cartCount').textContent = cart.length;
       const total = cart.reduce((s, i) => s + i.price, 0);
-      document.getElementById('cartTotal').textContent = `€${total}`;
-      if (cart.length === 0) {
-        cartItemsEl.innerHTML = '<div class="cart-empty">Your cart is empty.<br>Beautiful feet await.</div>';
-        return;
-      }
-      cartItemsEl.innerHTML = cart.map((item, i) => `
-        <div class="cart-item">
-          <div>
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">€${item.price}</div>
-          </div>
-          <button class="cart-item-remove" onclick="removeFromCart(${i})" aria-label="Remove ${item.name}">&times;</button>
-        </div>
-      `).join('');
+      document.getElementById('cartTotal').textContent = '€' + total;
+      if (cart.length === 0) { cartItemsEl.innerHTML = '<div class="cart-empty">Your cart is empty.</div>'; return; }
+      cartItemsEl.innerHTML = cart.map((item, i) => '<div class="cart-item"><div><div class="cart-item-name">' + item.name + '</div><div class="cart-item-price">€' + item.price + '</div></div><button class="cart-item-remove" onclick="removeFromCart(' + i + ')" aria-label="Remove">&times;</button></div>').join('');
     }
-
-    function toggleCart(open) {
-      cartDrawer.classList.toggle('open', open);
-      cartOverlay.classList.toggle('open', open);
-      document.body.classList.toggle('no-scroll', open);
-    }
-
+    function toggleCart(open) { cartDrawer.classList.toggle('open', open); cartOverlay.classList.toggle('open', open); document.body.classList.toggle('no-scroll', open); }
     function checkout() {
       if (cart.length === 0) { showToast('Your cart is empty'); return; }
-      const total = cart.reduce((s, i) => s + i.price, 0);
-      showToast(`Order inquiry sent — total €${total}. We'll contact you!`);
-      cart = [];
-      renderCart();
-      toggleCart(false);
+      showToast('Thanks! We\'ll contact you about your order.');
+      cart = []; renderCart(); toggleCart(false);
     }
-
     let toastTimer;
-    function showToast(msg) {
-      toast.textContent = msg;
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
-    }
+    function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800); }
 
-    // Header
     const header = document.getElementById('header');
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+    hamburger.addEventListener('click', () => { const open = navLinks.classList.toggle('open'); hamburger.classList.toggle('open', open); document.body.classList.toggle('no-scroll', open); });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { navLinks.classList.remove('open'); hamburger.classList.remove('open'); document.body.classList.remove('no-scroll'); }));
 
-    window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const t = document.querySelector(this.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
 
-    hamburger.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      hamburger.classList.toggle('open', open);
-      document.body.classList.toggle('no-scroll', open);
-    });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        hamburger.classList.remove('open');
-        document.body.classList.remove('no-scroll');
-      });
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-      });
-    });
-
-    // Reveal on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-      });
-    }, { threshold: 0.12 });
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Newsletter
-    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = this.querySelector('input').value;
-      document.getElementById('newsletterMsg').textContent = `Thank you — we'll reach out to ${email} shortly.`;
-      this.querySelector('input').value = '';
-    });
-
-    // Escape closes cart
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) { e.preventDefault(); const email = this.querySelector('input').value; document.getElementById('newsletterMsg').textContent = 'Thank you — we\'ll reach out to ' + email + ' shortly.'; this.querySelector('input').value = ''; });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleCart(false); });
   </script>
 </body>
