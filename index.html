@@ -270,6 +270,28 @@
     .toast.show { transform: translateX(-50%) translateY(0); }
     .no-scroll { overflow: hidden; }
 
+    /* ─── CHECKOUT MODAL ─── */
+    .checkout-modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: var(--ease); padding: 20px; }
+    .checkout-modal.open { opacity: 1; pointer-events: all; }
+    .checkout-modal-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
+    .checkout-form { position: relative; background: var(--bg-card); padding: 48px; max-width: 480px; width: 100%; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+    .checkout-form h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .checkout-form p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 28px; }
+    .checkout-form .field { margin-bottom: 16px; }
+    .checkout-form label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .checkout-form input { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.9rem; font-family: inherit; color: var(--text-dark); outline: none; transition: var(--ease); }
+    .checkout-form input:focus { border-color: var(--gold); }
+    .checkout-form .order-summary { background: var(--bg-card-alt); padding: 16px; border-radius: 4px; margin-bottom: 20px; font-size: 0.85rem; }
+    .checkout-form .order-summary div { display: flex; justify-content: space-between; padding: 4px 0; }
+    .checkout-form .order-total { font-weight: 700; color: var(--gold); font-family: 'Fraunces', serif; font-size: 1.1rem; }
+    .checkout-form .btn-group { display: flex; gap: 12px; margin-top: 20px; }
+    .checkout-form .btn-group .btn { flex: 1; text-align: center; justify-content: center; }
+    .checkout-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; transition: var(--ease); line-height: 1; }
+    .checkout-close:hover { color: var(--text-dark); }
+    .checkout-thank { text-align: center; padding: 20px 0; }
+    .checkout-thank h3 { font-size: 1.6rem; margin-bottom: 8px; }
+    .checkout-thank p { color: var(--text-muted); }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
       .reveal { opacity: 1; transform: none; }
@@ -522,8 +544,10 @@
         <p class="section-label reveal">Get in Touch</p>
         <h2 class="reveal" id="newsletter-title">Leave your email and we'll<br>contact you to <em>discuss details</em></h2>
         <p class="reveal">Custom orders, sizing questions, or wholesale — we'd love to hear from you.</p>
-        <form class="newsletter-form reveal" id="newsletterForm" aria-label="Contact form">
-          <input type="email" placeholder="Your email address" required aria-label="Email address">
+        <form class="newsletter-form reveal" id="newsletterForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" aria-label="Contact form">
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+          <input type="hidden" name="_subject" value="New Zakistar Inquiry">
+          <input type="hidden" name="_next" value="https://isakzvegelj.github.io/Zakistar/">
           <button type="submit">Send</button>
         </form>
         <div class="newsletter-msg" id="newsletterMsg" role="status"></div>
@@ -549,8 +573,33 @@
   <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
     <div class="cart-head"><h3>Your Cart</h3><button class="cart-close" onclick="toggleCart(false)" aria-label="Close cart">&times;</button></div>
     <div class="cart-items" id="cartItems"><div class="cart-empty">Your cart is empty.</div></div>
-    <div class="cart-foot"><div class="cart-total"><span>Total</span><strong id="cartTotal">€0</strong></div><button class="cart-checkout" onclick="checkout()">Checkout →</button></div>
+    <div class="cart-foot"><div class="cart-total"><span>Total</span><strong id="cartTotal">€0</strong></div><button class="cart-checkout" onclick="openCheckout()">Checkout →</button></div>
   </aside>
+  <!-- ═══ CHECKOUT MODAL ═══ -->
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-modal-bg" onclick="closeCheckout()"></div>
+    <div class="checkout-form" id="checkoutFormContainer">
+      <button class="checkout-close" onclick="closeCheckout()" aria-label="Close">&times;</button>
+      <div id="checkoutFormInner">
+        <h3>Complete your order</h3>
+        <p>Leave your details and we'll reach out to confirm and arrange payment.</p>
+        <form id="orderForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <div class="field"><label for="orderName">Name</label><input type="text" id="orderName" name="name" required></div>
+          <div class="field"><label for="orderEmail">Email</label><input type="email" id="orderEmail" name="email" required></div>
+          <input type="hidden" name="order" id="orderData">
+          <input type="hidden" name="_subject" value="New Zakistar Order">
+          <input type="hidden" name="_next" value="https://isakzvegelj.github.io/Zakistar/">
+          <div class="order-summary" id="orderSummary"></div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">Place Order</button>
+        </form>
+      </div>
+      <div class="checkout-thank" id="checkoutThank" style="display:none;">
+        <h3>Thank you!</h3>
+        <p>We've received your order and will contact you shortly.</p>
+        <button class="btn btn-gold" onclick="closeCheckout()" style="margin-top:20px;">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
   <div class="toast" id="toast" role="status"></div>
 
   <script>
@@ -570,10 +619,19 @@
       cartItemsEl.innerHTML = cart.map((item, i) => '<div class="cart-item"><div><div class="cart-item-name">' + item.name + '</div><div class="cart-item-price">€' + item.price + '</div></div><button class="cart-item-remove" onclick="removeFromCart(' + i + ')" aria-label="Remove">&times;</button></div>').join('');
     }
     function toggleCart(open) { cartDrawer.classList.toggle('open', open); cartOverlay.classList.toggle('open', open); document.body.classList.toggle('no-scroll', open); }
-    function checkout() {
+    function openCheckout() {
       if (cart.length === 0) { showToast('Your cart is empty'); return; }
-      showToast('Thanks! We\'ll contact you about your order.');
-      cart = []; renderCart(); toggleCart(false);
+      toggleCart(false);
+      const summary = document.getElementById('orderSummary');
+      const total = cart.reduce((s, i) => s + i.price, 0);
+      summary.innerHTML = cart.map(i => '<div><span>' + i.name + '</span><span>€' + i.price + '</span></div>').join('') + '<div style="border-top:1px solid var(--border);margin-top:8px;padding-top:8px;font-weight:700;"><span>Total</span><span class="order-total">€' + total + '</span></div>';
+      document.getElementById('orderData').value = JSON.stringify(cart);
+      document.getElementById('checkoutModal').classList.add('open');
+    }
+    function closeCheckout() {
+      document.getElementById('checkoutModal').classList.remove('open');
+      document.getElementById('checkoutFormInner').style.display = '';
+      document.getElementById('checkoutThank').style.display = 'none';
     }
     let toastTimer;
     function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800); }
@@ -590,8 +648,38 @@
 
     const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    document.getElementById('newsletterForm').addEventListener('submit', function(e) { e.preventDefault(); const email = this.querySelector('input').value; document.getElementById('newsletterMsg').textContent = 'Thank you — we\'ll reach out to ' + email + ' shortly.'; this.querySelector('input').value = ''; });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleCart(false); });
+    // SETUP: Replace YOUR_FORMSPREE_ID with your real ID from https://formspree.io (free, 50 submissions/month)
+    const formEndpoint = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
+
+    async function submitForm(form, data) {
+      try {
+        const r = await fetch(formEndpoint, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        return r.ok;
+      } catch { return false; }
+    }
+
+    document.getElementById('orderForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(this);
+      const ok = await submitForm(this, data);
+      document.getElementById('checkoutFormInner').style.display = 'none';
+      document.getElementById('checkoutThank').style.display = 'block';
+      if (ok) {
+        cart = []; renderCart();
+      }
+    });
+
+    document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(this);
+      const email = this.querySelector('input').value;
+      const ok = await submitForm(this, data);
+      document.getElementById('newsletterMsg').textContent = ok
+        ? 'Thank you — we\'ll reach out to ' + email + ' shortly.'
+        : 'Something went wrong. Please try again.';
+      this.querySelector('input').value = '';
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { toggleCart(false); closeCheckout(); } });
   </script>
 </body>
 </html>
