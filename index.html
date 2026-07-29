@@ -9,28 +9,28 @@
   <meta property="og:description" content="Handcrafted in Slovenia with natural pebbles for foot massage therapy.">
   <meta property="og:image" content="https://zakistar.com/wp-content/uploads/2018/10/Flip-flops-welcome-zakistar-shine.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --green-900: #1a3d1f;
-      --green-700: #2c5530;
-      --green-500: #4a7c59;
-      --green-300: #7daf7a;
-      --green-100: #e8f0e6;
-      --brown-700: #5d2e0a;
-      --brown-500: #8b4513;
-      --brown-300: #c4956a;
-      --cream: #f5f0eb;
-      --sand: #faf6f0;
+      --black: #000000;
+      --dark: #111111;
+      --gray-900: #1a1a1a;
+      --gray-800: #2a2a2a;
+      --gray-700: #3a3a3a;
+      --gray-600: #555555;
+      --gray-500: #888888;
+      --gray-300: #cccccc;
+      --gray-100: #f0f0f0;
       --white: #ffffff;
+      --accent: #c4956a;
+      --accent-dark: #a07850;
       --text: #1f1f1f;
-      --text-muted: #6b6b6b;
+      --text-muted: #888888;
       --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
       --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
       --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
       --radius: 16px;
-      --radius-sm: 8px;
       --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
     html { scroll-behavior: smooth; }
@@ -41,42 +41,41 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; }
+    h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.02em; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
     .section { padding: 100px 0; }
     .section-label {
-      font-family: 'Inter', sans-serif;
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--brown-500);
+      color: var(--accent);
       margin-bottom: 12px;
     }
     .section-title {
-      font-size: 2.75rem;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      color: var(--green-900);
+      font-size: 2.5rem;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: var(--white);
     }
     .section-sub {
-      font-size: 1.1rem;
-      color: var(--text-muted);
+      font-size: 1.05rem;
+      color: var(--gray-500);
       max-width: 600px;
       line-height: 1.7;
     }
 
     @media (max-width: 768px) {
       .section { padding: 60px 0; }
-      .section-title { font-size: 2rem; }
+      .section-title { font-size: 1.8rem; }
     }
 
     .skip-link {
       position: absolute; top: -100px; left: 16px;
-      background: var(--green-700); color: white;
+      background: var(--gray-900); color: white;
       padding: 12px 20px; border-radius: 8px; z-index: 1001;
       font-weight: 600;
     }
@@ -88,205 +87,142 @@
       transition: var(--transition);
     }
     header.scrolled {
-      background: rgba(255,255,255,0.92);
+      background: rgba(0,0,0,0.9);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      box-shadow: var(--shadow-sm);
       padding: 12px 0;
     }
     header .container {
       display: flex; justify-content: space-between; align-items: center;
     }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--white);
-      transition: var(--transition);
-    }
-    header.scrolled .logo { color: var(--green-900); }
-    .logo span { color: var(--brown-500); }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--white); }
     .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
     .nav-links a {
-      font-size: 0.9rem; font-weight: 500;
-      color: rgba(255,255,255,0.85);
+      font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.7);
       transition: var(--transition);
-      position: relative;
-      padding: 4px 0;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
-    header.scrolled .nav-links a { color: var(--text); }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -2px; left: 0;
-      width: 0; height: 2px;
-      background: var(--brown-500);
-      transition: var(--transition);
-    }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-links a:hover { color: var(--brown-500); }
+    .nav-links a:hover { color: var(--accent); }
 
     .nav-cta {
-      background: var(--brown-500) !important;
-      color: white !important;
+      background: var(--accent) !important;
+      color: var(--black) !important;
       padding: 10px 24px !important;
-      border-radius: 50px;
+      border-radius: 0;
       font-weight: 600 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
     }
-    .nav-cta:hover { background: var(--brown-700) !important; }
-    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--accent-dark) !important; color: var(--black) !important; }
 
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
-    header.scrolled .hamburger span { background: var(--text); }
 
     @media (max-width: 768px) {
       .hamburger { display: flex; }
       .nav-links {
         position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
-        background: var(--white); flex-direction: column; padding: 80px 40px 40px;
+        background: var(--dark); flex-direction: column; padding: 80px 40px 40px;
         box-shadow: var(--shadow-lg); transition: var(--transition); gap: 24px;
         align-items: flex-start;
       }
       .nav-links.open { right: 0; }
-      .nav-links a { color: var(--text) !important; font-size: 1.1rem; }
+      .nav-links a { color: rgba(255,255,255,0.7) !important; font-size: 1rem; }
       .nav-cta { width: 100%; text-align: center; }
     }
 
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--green-900) 0%, var(--green-700) 40%, var(--green-500) 100%);
+      background: var(--black);
       display: flex; align-items: center;
       position: relative; overflow: hidden;
     }
-    .hero::before {
+    .hero::after {
       content: '';
       position: absolute; inset: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><circle cx="200" cy="200" r="3" fill="rgba(255,255,255,0.08)"/><circle cx="600" cy="150" r="4" fill="rgba(255,255,255,0.06)"/><circle cx="400" cy="600" r="2" fill="rgba(255,255,255,0.08)"/><circle cx="700" cy="500" r="5" fill="rgba(255,255,255,0.04)"/><circle cx="100" cy="650" r="3" fill="rgba(255,255,255,0.07)"/></svg>');
-      background-size: cover;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+      z-index: 0;
     }
     .hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding-top: 80px; }
     .hero-content { color: var(--white); }
     .hero-badge {
       display: inline-block;
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(8px);
+      border: 1px solid var(--accent);
+      color: var(--accent);
       padding: 8px 20px;
-      border-radius: 50px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 500;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       margin-bottom: 24px;
-      border: 1px solid rgba(255,255,255,0.15);
     }
-    .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 24px; }
-    .hero h1 em { font-style: italic; color: var(--brown-300); }
-    .hero p { font-size: 1.15rem; opacity: 0.85; margin-bottom: 36px; max-width: 480px; line-height: 1.7; }
+    .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; font-weight: 700; }
+    .hero p { font-size: 1.1rem; opacity: 0.6; margin-bottom: 36px; max-width: 480px; line-height: 1.7; }
     .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 32px; border-radius: 50px;
-      font-weight: 600; font-size: 0.95rem;
+      padding: 14px 32px;
+      font-weight: 600; font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       border: none; cursor: pointer;
       transition: var(--transition);
     }
     .btn-primary {
-      background: var(--brown-500); color: var(--white);
+      background: var(--accent); color: var(--black);
     }
-    .btn-primary:hover { background: var(--brown-700); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(139,69,19,0.3); }
+    .btn-primary:hover { background: var(--accent-dark); }
     .btn-secondary {
       background: transparent; color: var(--white);
-      border: 2px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.3);
     }
-    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
-    .btn-outline {
-      background: transparent; color: var(--green-700);
-      border: 2px solid var(--green-300);
-    }
-    .btn-outline:hover { background: var(--green-100); border-color: var(--green-500); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-    .hero-visual {
-      display: flex; justify-content: center; align-items: center;
-      position: relative;
-    }
-    .hero-product {
-      width: 100%; max-width: 450px;
-      border-radius: 24px;
-      box-shadow: var(--shadow-lg);
-      transform: perspective(800px) rotateY(-5deg);
-      transition: var(--transition);
-    }
-    .hero-product:hover { transform: perspective(800px) rotateY(0deg); }
-    .hero-float {
-      position: absolute;
-      bottom: -20px; left: -20px;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      padding: 16px 24px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);
-    }
-    .hero-float span { font-size: 2rem; font-weight: 700; color: var(--green-900); display: block; }
-    .hero-float small { font-size: 0.8rem; color: var(--text-muted); }
+    .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+    .hero-product { width: 100%; max-width: 450px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
 
     @media (max-width: 768px) {
       .hero .container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-      .hero h1 { font-size: 2.5rem; }
+      .hero h1 { font-size: 2.2rem; }
       .hero p { margin-left: auto; margin-right: auto; }
       .hero-buttons { justify-content: center; }
       .hero-product { max-width: 300px; }
-      .hero-float { left: 10px; bottom: -10px; }
     }
 
-    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 48px; background: var(--gray-800); }
     .feature-card {
-      background: var(--sand);
-      border-radius: var(--radius);
-      padding: 36px 28px;
+      background: var(--gray-900);
+      padding: 40px 32px;
       transition: var(--transition);
-      border: 1px solid transparent;
     }
-    .feature-card:hover { border-color: var(--green-300); transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .feature-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
-    .feature-card h3 { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; color: var(--green-900); }
-    .feature-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .feature-card:hover { background: var(--dark); }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 16px; display: block; color: var(--accent); }
+    .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: var(--white); text-transform: uppercase; letter-spacing: 0.05em; }
+    .feature-card p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.6; }
 
     @media (max-width: 768px) { .features-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .features-grid { grid-template-columns: 1fr; } }
 
-    .benefits { background: var(--green-900); color: var(--white); }
-    .benefits .section-title { color: var(--white); }
-    .benefits .section-sub { color: rgba(255,255,255,0.7); }
-    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+    .benefits { background: var(--black); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 48px; background: var(--gray-800); }
     .benefit-card {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(8px);
-      border-radius: var(--radius);
-      padding: 40px 32px;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--gray-900);
+      padding: 48px 36px;
       transition: var(--transition);
     }
-    .benefit-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
-    .benefit-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem; font-weight: 700;
-      color: var(--brown-300);
-      margin-bottom: 12px;
-      line-height: 1;
-    }
-    .benefit-card h3 { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; }
-    .benefit-card p { font-size: 0.9rem; opacity: 0.7; line-height: 1.6; }
+    .benefit-card:hover { background: var(--dark); }
+    .benefit-number { font-size: 3rem; font-weight: 700; color: var(--accent); margin-bottom: 12px; line-height: 1; }
+    .benefit-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 12px; color: var(--white); text-transform: uppercase; letter-spacing: 0.05em; }
+    .benefit-card p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.6; }
 
     @media (max-width: 768px) { .benefits-grid { grid-template-columns: 1fr; } }
 
-    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
-    .product-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+    .products { background: var(--black); }
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 48px; background: var(--gray-800); }
+    .product-card { background: var(--gray-900); transition: var(--transition); }
+    .product-card:hover { background: var(--dark); }
     .product-img {
       height: 320px;
       background-size: cover;
@@ -295,103 +231,86 @@
     }
     .product-badge {
       position: absolute; top: 16px; left: 16px;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(8px);
+      background: var(--black);
+      color: var(--accent);
       padding: 6px 14px;
-      border-radius: 50px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      color: var(--green-900);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--accent);
     }
     .product-body { padding: 28px; }
-    .product-body h3 { font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; color: var(--green-900); }
-    .product-body p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+    .product-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: var(--white); text-transform: uppercase; letter-spacing: 0.05em; }
+    .product-body p { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 16px; line-height: 1.6; }
     .product-foot { display: flex; justify-content: space-between; align-items: center; }
-    .product-price { font-size: 1.35rem; font-weight: 700; color: var(--brown-500); }
-    .product-price small { font-size: 0.8rem; font-weight: 400; color: var(--text-muted); }
+    .product-price { font-size: 1.25rem; font-weight: 700; color: var(--accent); }
+    .product-price small { font-size: 0.75rem; font-weight: 400; color: var(--gray-500); }
     .product-btn {
-      background: var(--green-900);
+      background: transparent;
       color: var(--white);
-      border: none;
+      border: 1px solid var(--gray-600);
       padding: 10px 22px;
-      border-radius: 50px;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       cursor: pointer;
       transition: var(--transition);
     }
-    .product-btn:hover { background: var(--brown-500); transform: scale(1.05); }
+    .product-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     @media (max-width: 768px) { .products-grid { grid-template-columns: 1fr; } }
 
-    .story { background: var(--cream); }
+    .story { background: var(--gray-900); }
     .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
     .story-image {
       height: 500px;
-      border-radius: var(--radius);
       background-size: cover;
       background-position: center;
-      box-shadow: var(--shadow-md);
     }
-    .story-text h2 { font-size: 2.75rem; margin-bottom: 24px; color: var(--green-900); }
-    .story-text p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.8; }
-    .story-signature { font-family: 'Playfair Display', serif; font-style: italic; color: var(--brown-500); font-size: 1.1rem; margin-top: 24px; }
+    .story-text h2 { font-size: 2.5rem; margin-bottom: 24px; color: var(--white); }
+    .story-text p { font-size: 1rem; color: var(--gray-500); margin-bottom: 20px; line-height: 1.8; }
+    .story-signature { color: var(--accent); font-size: 1rem; margin-top: 24px; font-weight: 500; }
 
     @media (max-width: 768px) {
       .story-grid { grid-template-columns: 1fr; gap: 32px; }
       .story-image { height: 300px; }
-      .story-text h2 { font-size: 2rem; }
+      .story-text h2 { font-size: 1.8rem; }
     }
 
-    .testimonials { background: var(--sand); }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
-    .testimonial-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 36px;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-    .testimonial-stars { color: #e6a817; font-size: 1.1rem; margin-bottom: 16px; letter-spacing: 2px; }
-    .testimonial-card blockquote { font-size: 0.95rem; color: var(--text); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testimonials { background: var(--black); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 48px; background: var(--gray-800); }
+    .testimonial-card { background: var(--gray-900); padding: 40px 32px; }
+    .testimonial-stars { color: var(--accent); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .testimonial-card blockquote { font-size: 0.9rem; color: var(--gray-300); line-height: 1.7; margin-bottom: 20px; }
     .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      background-size: cover; background-position: center;
-    }
-    .testimonial-name { font-weight: 600; font-size: 0.9rem; color: var(--green-900); }
-    .testimonial-location { font-size: 0.8rem; color: var(--text-muted); }
+    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background-size: cover; background-position: center; }
+    .testimonial-name { font-weight: 600; font-size: 0.9rem; color: var(--white); }
+    .testimonial-location { font-size: 0.8rem; color: var(--gray-500); }
 
     @media (max-width: 768px) { .testimonials-grid { grid-template-columns: 1fr; } }
 
     .cta-section {
-      background: linear-gradient(135deg, var(--green-900), var(--green-700));
+      background: var(--gray-900);
       text-align: center; padding: 100px 0;
-      position: relative; overflow: hidden;
     }
-    .cta-section::before {
-      content: '';
-      position: absolute; top: -100px; right: -100px;
-      width: 400px; height: 400px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.03);
-    }
-    .cta-section h2 { font-size: 3rem; color: white; margin-bottom: 16px; position: relative; }
-    .cta-section p { color: rgba(255,255,255,0.75); font-size: 1.1rem; max-width: 500px; margin: 0 auto 36px; position: relative; }
-    .cta-section .btn-primary { font-size: 1.05rem; padding: 16px 40px; }
+    .cta-section h2 { font-size: 2.5rem; color: var(--white); margin-bottom: 16px; }
+    .cta-section p { color: var(--gray-500); font-size: 1rem; max-width: 500px; margin: 0 auto 36px; }
 
     footer {
-      background: var(--green-900);
-      color: rgba(255,255,255,0.7);
+      background: var(--black);
+      color: var(--gray-500);
       padding: 60px 0 30px;
+      border-top: 1px solid var(--gray-800);
     }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-    .footer-brand .logo { font-size: 1.5rem; color: white; display: inline-block; margin-bottom: 16px; }
-    .footer-brand p { font-size: 0.9rem; max-width: 300px; line-height: 1.7; }
-    .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: white; margin-bottom: 20px; }
-    .footer-col a { display: block; font-size: 0.9rem; margin-bottom: 12px; transition: var(--transition); }
-    .footer-col a:hover { color: var(--brown-300); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; font-size: 0.85rem; }
+    .footer-brand .logo { font-size: 1.5rem; color: var(--white); display: inline-block; margin-bottom: 16px; }
+    .footer-brand p { font-size: 0.85rem; max-width: 300px; line-height: 1.7; }
+    .footer-col h4 { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--white); margin-bottom: 20px; }
+    .footer-col a { display: block; font-size: 0.85rem; margin-bottom: 12px; color: var(--gray-500); transition: var(--transition); }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom { border-top: 1px solid var(--gray-800); padding-top: 24px; text-align: center; font-size: 0.8rem; color: var(--gray-600); }
 
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
@@ -408,14 +327,14 @@
 
   <header id="header" role="banner">
     <div class="container">
-      <a href="#" class="logo" aria-label="Zakistar home">Zakistar<span>.</span></a>
+      <a href="#" class="logo" aria-label="Zakistar home">ZAKISTAR</a>
       <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
           <li><a href="#products">Products</a></li>
           <li><a href="#benefits">Benefits</a></li>
-          <li><a href="#story">Our Story</a></li>
+          <li><a href="#story">Story</a></li>
           <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+          <li><a href="#contact" class="nav-cta">Contact</a></li>
         </ul>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -429,48 +348,42 @@
       <div class="container">
         <div class="hero-content">
           <div class="hero-badge">Handcrafted in Slovenia</div>
-          <h1>Walk on <em>nature</em>,<br>feel the difference.</h1>
+          <h1>Walk on nature,<br>feel the difference.</h1>
           <p>Zakistar flip flops combine traditional Slovenian craftsmanship with the therapeutic power of natural pebbles. Every step becomes a gentle massage for your feet.</p>
           <div class="hero-buttons">
-            <a href="#products" class="btn btn-primary">Explore Collection</a>
+            <a href="#products" class="btn btn-primary">Explore</a>
             <a href="#story" class="btn btn-secondary">Our Story</a>
           </div>
         </div>
         <div class="hero-visual">
-          <picture>
-            <img class="hero-product" src="https://zakistar.com/wp-content/uploads/2018/10/Flip-flops-welcome-zakistar-shine.jpg" alt="Zakistar premium flip flops with natural pebbles" loading="eager">
-          </picture>
-          <div class="hero-float">
-            <span>€79+</span>
-            <small>Handcrafted footwear</small>
-          </div>
+          <img class="hero-product" src="https://zakistar.com/wp-content/uploads/2018/10/Flip-flops-welcome-zakistar-shine.jpg" alt="Zakistar premium flip flops with natural pebbles" loading="eager">
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="features-title">
+    <section class="section features" aria-labelledby="features-title">
       <div class="container">
         <p class="section-label">Why Zakistar</p>
         <h2 class="section-title" id="features-title">The art of mindful walking</h2>
         <p class="section-sub">Every pair is a piece of wearable wellness, designed to reconnect you with the earth beneath your feet.</p>
         <div class="features-grid">
           <article class="feature-card">
-            <span class="feature-icon" aria-hidden="true">🪨</span>
+            <span class="feature-icon" aria-hidden="true">◆</span>
             <h3>Natural Pebble Sole</h3>
             <p>Smooth river stones carefully selected and arranged to stimulate pressure points on your feet.</p>
           </article>
           <article class="feature-card">
-            <span class="feature-icon" aria-hidden="true">🧵</span>
+            <span class="feature-icon" aria-hidden="true">◆</span>
             <h3>Handcrafted Quality</h3>
             <p>Made by hand in Slovenia using traditional techniques passed down through generations.</p>
           </article>
           <article class="feature-card">
-            <span class="feature-icon" aria-hidden="true">🌿</span>
+            <span class="feature-icon" aria-hidden="true">◆</span>
             <h3>Natural Materials</h3>
             <p>Eco-friendly materials including untreated leather, natural rubber, and locally sourced stones.</p>
           </article>
           <article class="feature-card">
-            <span class="feature-icon" aria-hidden="true">🦶</span>
+            <span class="feature-icon" aria-hidden="true">◆</span>
             <h3>Therapeutic Benefits</h3>
             <p>Improves circulation, strengthens foot muscles, and provides natural reflexology with every step.</p>
           </article>
@@ -480,7 +393,7 @@
 
     <section id="benefits" class="section benefits" aria-labelledby="benefits-title">
       <div class="container">
-        <p class="section-label" style="color: var(--brown-300);">Health &amp; Wellness</p>
+        <p class="section-label">Health &amp; Wellness</p>
         <h2 class="section-title" id="benefits-title">More than footwear</h2>
         <p class="section-sub">Zakistar isn't just about comfort — it's about caring for your body with every step.</p>
         <div class="benefits-grid">
@@ -503,7 +416,7 @@
       </div>
     </section>
 
-    <section id="products" class="section" aria-labelledby="products-title">
+    <section id="products" class="section products" aria-labelledby="products-title">
       <div class="container">
         <p class="section-label">Collection</p>
         <h2 class="section-title" id="products-title">Our flip flops</h2>
@@ -517,7 +430,7 @@
               <h3>Classic Pebble</h3>
               <p>Our signature design with carefully arranged river stones for a balanced, all-day massage experience.</p>
               <div class="product-foot">
-                <span class="product-price">€89 <small>EUR</small></span>
+                <span class="product-price">€89</span>
                 <button class="product-btn" onclick="addToCart('Classic Pebble', 89)">Add to Cart</button>
               </div>
             </div>
@@ -530,7 +443,7 @@
               <h3>Premium Stone</h3>
               <p>Larger, smoother stones with a leather footbed for a more intense massage and luxurious comfort.</p>
               <div class="product-foot">
-                <span class="product-price">€129 <small>EUR</small></span>
+                <span class="product-price">€129</span>
                 <button class="product-btn" onclick="addToCart('Premium Stone', 129)">Add to Cart</button>
               </div>
             </div>
@@ -543,7 +456,7 @@
               <h3>Custom Design</h3>
               <p>Design your own arrangement. Choose pebble colors, sizes, and strap material for a truly one-of-a-kind pair.</p>
               <div class="product-foot">
-                <span class="product-price">€159 <small>EUR</small></span>
+                <span class="product-price">€159</span>
                 <button class="product-btn" onclick="addToCart('Custom Design', 159)">Inquire</button>
               </div>
             </div>
@@ -605,16 +518,16 @@
       <div class="container">
         <h2 id="cta-title">Ready to experience<br>the Zakistar difference?</h2>
         <p>Get in touch with us for custom orders, wholesale inquiries, or just to say hello.</p>
-        <a href="mailto:info@zakistar.com" class="btn btn-primary">Email Us →</a>
+        <a href="mailto:info@zakistar.com" class="btn btn-primary">Email Us</a>
       </div>
     </section>
   </main>
 
-  <footer id="contact" role="contentinfo">
+  <footer role="contentinfo">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="logo" aria-label="Zakistar home">Zakistar<span>.</span></a>
+          <a href="#" class="logo">ZAKISTAR</a>
           <p>Handcrafted flip flops with natural pebbles. Made with love in Slovenia.</p>
         </div>
         <div class="footer-col">
