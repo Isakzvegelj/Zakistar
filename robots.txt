@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://isakzvegelj.github.io/Zakistar/sitemap.xml
