@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Zakistar</title>
+  <rect width="64" height="64" rx="16" fill="#1c1c1c"/>
+  <path d="M16 18h32L21 32h27L16 47h32" fill="none" stroke="#d4b07c" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+  <circle cx="18" cy="49" r="2.5" fill="#f7f5f2"/>
+  <circle cx="25" cy="52" r="2" fill="#b8945c"/>
+  <circle cx="32" cy="49" r="1.8" fill="#f7f5f2"/>
+</svg>
