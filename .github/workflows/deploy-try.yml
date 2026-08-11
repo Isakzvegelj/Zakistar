@@ -20,7 +20,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          server-dir: /public_html/try/
+          # The deployment FTP account is restricted to the try folder.
+          server-dir: /
           local-dir: ./
           exclude: |
             **/.git*/**
