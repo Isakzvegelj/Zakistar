@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/favicon.svg">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  <meta name="theme-color" content="#1c1c1c">
   <title>How to Choose Reflexology &amp; Massage Sandals: The 2026 Buying Guide</title>
   <meta name="description" content="What to look for in reflexology and massage sandals — natural vs synthetic, pebble quality, materials, fit, and when it's worth spending more. An honest buyer's guide.">
   <link rel="canonical" href="https://isakzvegelj.github.io/Zakistar/guide.html">
@@ -18,6 +19,7 @@
   <meta property="twitter:description" content="Natural vs synthetic, pebble quality, materials, fit, and price.">
   <meta property="twitter:image" content="https://zakistar.com/wp-content/uploads/2018/10/Best-cute-flip-flops-zakistar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -243,7 +245,7 @@
     .newsletter-msg { margin-top: 12px; font-size: 0.85rem; color: var(--gold); min-height: 20px; }
 
     /* ─── FOOTER ─── */
-    .section-dark footer { padding-top: 80px 0 32px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .section-dark footer { border-top: 1px solid rgba(255,255,255,0.08); }
     .section-dark .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .section-dark .footer-brand .logo { color: var(--text-light); font-size: 1.5rem; font-weight: 500; display: inline-block; margin-bottom: 16px; }
     .section-dark .footer-brand p { font-size: 0.85rem; color: rgba(255,255,255,0.45); max-width: 300px; line-height: 1.75; }
@@ -355,7 +357,7 @@
         <div class="breadcrumb"><a href="index.html">Home</a> &rsaquo; Buying Guide</div>
         <div class="kicker">Buyer&rsquo;s Guide &middot; Updated 2026</div>
         <h1>How to Choose Reflexology &amp; Massage Sandals: The 2026 Buyer&rsquo;s Guide</h1>
-        <p class="dek">Massage and &ldquo;reflexology&rdquo; sandals range from &euro;16 factory foam to &euro;89+ handcrafted natural pairs. Most of what you read about them is marketing. Here&rsquo;s the honest framework for deciding what to buy &mdash; and what actually matters.</p>
+        <p class="dek">Massage and &ldquo;reflexology&rdquo; sandals range from &euro;16 factory foam to &euro;90+ handcrafted natural pairs. Most of what you read about them is marketing. Here&rsquo;s the honest framework for deciding what to buy &mdash; and what actually matters.</p>
       </div>
     </section>
 
@@ -368,7 +370,7 @@
             <li><strong>Set honest expectations:</strong> it&rsquo;s foot massage, not a medical treatment.</li>
             <li><strong>Comfort on bare skin is the #1 factor</strong> &mdash; rounded natural stones beat hard plastic nubs.</li>
             <li><strong>Natural materials last years;</strong> cheap synthetic foam wears out in months.</li>
-            <li><strong>Price is really cost-per-wear:</strong> a &euro;89 pair worn daily for years usually costs less than a &euro;30 pair you replace twice a year.</li>
+            <li><strong>Price is really cost-per-wear:</strong> a &euro;90 pair worn daily for years usually costs less than a &euro;30 pair you replace twice a year.</li>
             <li><strong>Buy from somewhere with a real guarantee</strong> so trying them is risk-free.</li>
           </ul>
         </div>
@@ -399,7 +401,7 @@
         <p>Because comfort is personal, buy from a seller with a real return window (ideally 30 days). It makes the whole decision risk-free.</p>
 
         <h2>When is it worth spending more?</h2>
-        <p>Do the cost-per-wear math honestly. A &euro;30 synthetic pair you replace twice a year costs &euro;60/year and &euro;180 over three years. A &euro;89 handcrafted pair that lasts three years costs &euro;30/year &mdash; and feels better the whole time.</p>
+        <p>Do the cost-per-wear math honestly. A &euro;30 synthetic pair you replace twice a year costs &euro;60/year and &euro;180 over three years. A &euro;90 handcrafted pair that lasts three years costs &euro;30/year &mdash; and feels better the whole time.</p>
         <div class="callout">
           <p style="margin-bottom:0;"><strong>Our pick in the natural category:</strong> handcrafted natural-pebble flip flops from a physiotherapist-recommended Slovenian workshop &mdash; real river stones in real leather, made to order, with a 30-day money-back guarantee. That&rsquo;s the pair we chose and still wear.</p>
         </div>
@@ -446,6 +448,25 @@
   </footer>
 
   <script>
+    // Keep the affiliate ID available across the landing site and outbound shop links.
+    (() => {
+      const affiliateId = '17';
+      const maxAge = 60 * 60 * 24 * 30;
+      const cookie = `zakistar_aff=${encodeURIComponent(affiliateId)}; Max-Age=${maxAge}; Path=/; SameSite=Lax; Secure`;
+      document.cookie = window.location.hostname.endsWith('.zakistar.com') ? `${cookie}; Domain=.zakistar.com` : cookie;
+      try { window.localStorage.setItem('zakistar_aff', affiliateId); } catch (_) {}
+
+      document.querySelectorAll('a[href]').forEach((link) => {
+        try {
+          const destination = new URL(link.href, window.location.href);
+          if (destination.hostname === 'zakistar.com' || destination.hostname.endsWith('.zakistar.com')) {
+            if (!destination.searchParams.has('aff')) destination.searchParams.set('aff', affiliateId);
+            link.href = destination.toString();
+          }
+        } catch (_) {}
+      });
+    })();
+
     const header = document.getElementById('header');
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
