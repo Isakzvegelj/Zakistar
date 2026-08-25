@@ -23,6 +23,9 @@ jobs:
           # The deployment FTP account is restricted to the try folder.
           server-dir: /
           local-dir: ./
+          # Reconcile the complete small static site on every deploy. This avoids
+          # serving stale files when the remote sync state is out of date.
+          dangerous-clean-slate: true
           exclude: |
             **/.git*/**
             **/.github/**
